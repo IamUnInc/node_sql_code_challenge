@@ -1,0 +1,4 @@
+CREATE TABLE zoo_animals(
+animal_id serial PRIMARY KEY,
+animal_type varchar(80) NOT NULL,
+animal_type_number integer)
