@@ -42,10 +42,12 @@ function postAnimals() {
 
   var animal = {};
 
-  $.each($('#animal-form').serializeArray(), function (i, field) {
-    animal[field.name] = field.value;
-  });
+  $.each($('#Animal-Form').serializeArray(), function (i, field) {
 
+    animal[field.name] = field.value;
+
+  });
+  console.log(animal);
 
   $.ajax({
     type: 'POST',

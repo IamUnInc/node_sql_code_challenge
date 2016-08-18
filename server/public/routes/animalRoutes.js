@@ -24,24 +24,19 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  var animals = req.body;
+  var animal = req.body;
   var number = random.randomNumber(1, 100);
     console.log('number', number);
+    console.log(animal);
 
   pg.connect(connectionString, function (err, client, done) {
   if (err) {
     res.sendStatus(500);
   }
-  //im getting everything to work but in my database I can't see any input.
-  //even with the database connected the termial is giving me no feed back except
-  // "nicholas-mateckis-powerbook-g4:~ nmatecki$ postgres
-  // FATAL:  lock file "postmaster.pid" already exists
-  // HINT:  Is another postmaster (PID 54580) running in data directory "/usr/local/var/postgres"?"
-  // I'm also getting "throw new Error('Can\'t set headers after they are sent.');" sever side which I could not resolve.
 
-  client.query('INSERT INTO zoo_animals (animals_type, animal_type_number) '
-              +  'VALUES ($1, $2)',
-              [animals.animal, number],
+  client.query("INSERT INTO zoo_animals (animal_type, animal_type_number) "
+              +  "VALUES ('" + animal.animal + "'," + number + ")",
+              // [animal.animal, number],
               function (err, result){
                 done();
                 console.log('sql i work');
